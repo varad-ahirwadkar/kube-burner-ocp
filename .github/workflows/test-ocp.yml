@@ -1,4 +1,4 @@
-name: Execute tests on OCP
+name: Execute tests
 on:
   workflow_call:
     secrets:
@@ -8,6 +8,7 @@ on:
         required: true
       OPENSHIFT_PASSWORD:
         required: true
+  
 jobs:
   ocp-e2e-ci:
     runs-on: ubuntu-latest

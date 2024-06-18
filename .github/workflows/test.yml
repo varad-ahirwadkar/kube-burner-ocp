@@ -1,0 +1,26 @@
+name: Execute tests on OCP
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v**'
+
+env:
+  GO_VERSION: "1.22"
+  IMAGE_TAG_BASE: ghcr.io/${{ github.repository }}
+
+jobs:
+  build-and-publish-operator:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Version
+        id: release_version
+        run: echo "VERSION=$(echo ${GITHUB_REF/refs\/tags\//})" >> $GITHUB_ENV
+        
+      - name: Checkout
+        run: |
+          echo "version:"
+          echo $VERSION
+        
